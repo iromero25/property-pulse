@@ -163,13 +163,13 @@ export default function Navbar() {
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
-                  tabIndex="-1"
+                  tabIndex={-1}
                 >
                   <Link
                     href="/profile"
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
-                    tabIndex="-1"
+                    tabIndex={-1}
                     id="user-menu-item-0"
                   >
                     Your Profile
@@ -178,7 +178,7 @@ export default function Navbar() {
                     href="/properties/saved"
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
-                    tabIndex="-1"
+                    tabIndex={-1}
                     id="user-menu-item-2"
                   >
                     Saved Properties
@@ -186,7 +186,7 @@ export default function Navbar() {
                   <button
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
-                    tabIndex="-1"
+                    tabIndex={-1}
                     id="user-menu-item-2"
                   >
                     Sign Out
