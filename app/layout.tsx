@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 import "@/assets/styles/globals.css";
 
@@ -20,6 +21,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
