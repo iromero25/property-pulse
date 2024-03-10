@@ -1,9 +1,14 @@
 import PropertyCard from "@/components/PropertyCard";
-import properties from "@/properties.json";
+import { fetchProperties } from "@/utils/requests";
 
-export type Property = (typeof properties)[0];
+export default async function PropertiesPage() {
+  const properties = await fetchProperties();
 
-export default function PropertiesPage() {
+  // sort properties by (descending) date
+  properties.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
   return (
     <section className="px-4 py-6">
       <div className="container-xl lg:container m-auto px-4 py-6">
