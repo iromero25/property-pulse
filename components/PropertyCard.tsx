@@ -1,4 +1,4 @@
-import { Property } from "@/app/properties/page";
+import { PropertySchemaType } from "@/models/Property";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,57 +9,19 @@ import {
   FaMapMarker,
 } from "react-icons/fa";
 
-// type Location = {
-//   street: string;
-//   city: string;
-//   state: string;
-//   zipcode: string;
-// };
-
-// type Rates = {
-//   nightly?: number;
-//   weekly?: number;
-//   monthly?: number;
-// };
-
-// type SellerInfo = {
-//   name: string;
-//   email: string;
-//   phone: string;
-// };
-
-// export type Property = {
-//   _id: string;
-//   owner: string;
-//   name: string;
-//   type: string;
-//   description: string;
-//   location: Location;
-//   beds: number;
-//   baths: number;
-//   square_feet: number;
-//   amenities: string[];
-//   rates: Rates;
-//   seller_info: SellerInfo;
-//   images: string[];
-//   isFeatured: boolean;
-//   createdAt: Date;
-//   updatedAt: Date;
-// };
-
 interface PropertyCardProps {
-  property: Property;
+  property: PropertySchemaType;
 }
 
 export default function PropertyCard({ property }: PropertyCardProps) {
   const getRateDisplay = () => {
     const { rates } = property;
 
-    if (rates.monthly) {
+    if (rates?.monthly) {
       return `${rates.monthly.toLocaleString()}/mo`;
-    } else if (rates.weekly) {
+    } else if (rates?.weekly) {
       return `${rates.weekly.toLocaleString()}/wk`;
-    } else if (rates.nightly) {
+    } else if (rates?.nightly) {
       return `${rates.nightly.toLocaleString()}/night`;
     }
   };
@@ -67,7 +29,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
-        src={`/images/properties/${property.images[0]}`}
+        src={property.images[0]}
         alt=""
         height={0}
         width={0}
@@ -100,19 +62,19 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         </div>
 
         <div className="flex justify-center gap-4 text-green-900 text-sm mb-4">
-          {property.rates.nightly && (
+          {property.rates?.nightly && (
             <p>
               <FaMoneyBill className="inline mr-2" /> Nightly
             </p>
           )}
 
-          {property.rates.weekly && (
+          {property.rates?.weekly && (
             <p>
               <FaMoneyBill className="inline mr-2" /> Weekly
             </p>
           )}
 
-          {property.rates.monthly && (
+          {property.rates?.monthly && (
             <p>
               <FaMoneyBill className="inline mr-2" /> Monthly
             </p>
@@ -126,7 +88,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             <FaMapMarker className="text-orange-700 mt-1" />
             <span className="text-orange-700">
               {" "}
-              {property.location.city} {property.location.state}{" "}
+              {property.location?.city} {property.location?.state}{" "}
             </span>
           </div>
           <Link

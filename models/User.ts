@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { InferSchemaType, Schema, model, models, ObjectId } from "mongoose";
 
 const UserSchema = new Schema(
   {
@@ -27,5 +27,9 @@ const UserSchema = new Schema(
 );
 
 const User = models.User || model("User", UserSchema);
+
+export type UserType = InferSchemaType<typeof UserSchema> & {
+  _id: ObjectId;
+};
 
 export default User;

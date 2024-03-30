@@ -1,13 +1,14 @@
-"use client";
-
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import LoginButtons from "./LoginButtons";
+import { Providers } from "./Navbar";
 
 interface MobileMenuProps {
+  providers: Providers | null;
   isLoggedIn: boolean;
 }
 
-export default function MobileMenu({ isLoggedIn }: MobileMenuProps) {
+export default function MobileMenu({ providers, isLoggedIn }: MobileMenuProps) {
   const pathname = usePathname();
 
   const getButtonClassName = (path: string) => {
@@ -36,11 +37,7 @@ export default function MobileMenu({ isLoggedIn }: MobileMenuProps) {
             Add Property
           </Link>
         )}
-        {!isLoggedIn && (
-          <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4">
-            <span>Login or Register</span>
-          </button>
-        )}
+        {!isLoggedIn && <LoginButtons providers={providers} />}
       </div>
     </div>
   );
